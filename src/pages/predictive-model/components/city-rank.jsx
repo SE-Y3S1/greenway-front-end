@@ -8,31 +8,24 @@ import {
 } from "@/components/ui/card"
 import { Separator } from "@radix-ui/react-separator";
 
-function CityRank() {
+function CityRank({ predictionData }) {
     return (
         <div>
-          <Separator/> 
-            <Card className="h-auto mt-4">
+            <h2 className="text-3xl font-bold text-center mt-10 mb-8">Weekly Waste Generation City Ranking</h2>
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-4 w-full mx-auto">
+            {predictionData.map((city, index) => (
+              <Card key={index} className="justify-center h-auto w-full px-14 shadow-lg transform transition duration-300 hover:scale-105">
                 <CardHeader>
-                    <CardTitle>City Rank</CardTitle>
-                    <CardDescription>Weekly waste genaration of cities in Sri Lanka</CardDescription>
+                  <CardTitle>{city.Rank}. {city.City}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <h3>1. Colombo</h3>
-                    <h3>2. Maharagama</h3>
-                    <h3>3. Nugegoda</h3>
-                    <h3>4. Kauwela</h3>
-                    <h3>5. Malabe</h3>
-                    <h3>6. Dehiwala</h3>
-                    <h3>7. Moratuwa</h3>
-                    <h3>8. Kottawa</h3>
-                    <h3>9. Homagama</h3>
-                    <h3>10. Avissawella</h3>
+                  <p className="text-xl">{city.Predicted_Disposed_Amount.toFixed(2)} tons</p>
                 </CardContent>
-            </Card>
-
+              </Card>
+            ))}
+          </div>
         </div>
-    )
+      );
 }
 
 export default CityRank;
