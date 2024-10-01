@@ -15,9 +15,11 @@ import {
 
 export function DatePickerDemo({ onDateChange }) {
     const [date, setDate] = React.useState(new Date());
+    const [currentMonth, setCurrentMonth] = React.useState(new Date());
 
     const handleDateSelect = (newDate) => {
       setDate(newDate);
+      setCurrentMonth(newDate);
       if (onDateChange) {
         onDateChange(newDate);
       }
@@ -35,7 +37,7 @@ export function DatePickerDemo({ onDateChange }) {
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {format(date, "PPP")}
+          {formattedDate}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">
@@ -43,6 +45,8 @@ export function DatePickerDemo({ onDateChange }) {
           mode="single"
           selected={date}
           onSelect={handleDateSelect}
+          month ={currentMonth}
+          onMonthChange={setCurrentMonth}
           initialFocus
         />
       </PopoverContent>
