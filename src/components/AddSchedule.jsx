@@ -13,10 +13,68 @@ export default function AddSchedule(){
   const[AssignedVehicle,setVehicle] = useState("");
   const[frequancy,setFrequancy] = useState("");
 
+  // State for validation errors
+  const [errors, setErrors] = useState({});
+
+  function validateForm() {
+    let formErrors = {};
+  
+    // Schedule name validation
+    if (!name) formErrors.name = "Schedule name is required.";
+  
+    // Schedule date validation
+    if (!date) formErrors.date = "Schedule date is required.";
+  
+    // Scheduled time validation
+    const timePattern = /^(0[0-9]|1[0-2])\.[0-5][0-9](AM|PM)$/; // Time format HH.MMAM/PM
+    if (!Time) {
+      formErrors.Time = "Scheduled time is required.";
+    } else if (!timePattern.test(Time)) {
+      formErrors.Time = "Scheduled time must be in the format HH.MMAM/PM (e.g., 10.30AM).";
+    }
+  
+    // Garbage type validation
+    if (!GarbageType) {
+      formErrors.GarbageType = "Garbage type is required.";
+    } else if (/\d/.test(GarbageType)) { // Check for digits
+      formErrors.GarbageType = "Garbage type cannot contain numbers.";
+    }
+  
+    // Collection zone validation
+    if (!collectionZone) {
+      formErrors.collectionZone = "Collection zone is required.";
+    } else if (/\d/.test(collectionZone)) { // Check for digits
+      formErrors.collectionZone = "Collection zone cannot contain numbers.";
+    }
+  
+    // Assigned vehicle validation for the format WP-QW-1545
+    const vehiclePattern = /^[A-Z]{2}-[A-Z]{2}-\d{4}$/; // Format: WP-QW-1545
+    if (!AssignedVehicle) {
+      formErrors.AssignedVehicle = "Assigned vehicle is required.";
+    } else if (!vehiclePattern.test(AssignedVehicle)) {
+      formErrors.AssignedVehicle = "Assigned vehicle must be in the format WP-QW-1545.";
+    }
+  
+    // Frequency validation
+    if (!frequancy) {
+      formErrors.frequancy = "Frequency is required.";
+    } else if (/\d/.test(frequancy)) { // Check for digits in frequency
+      formErrors.frequancy = "Frequency cannot contain numbers.";
+    }
+  
+    return formErrors;
+  }
   
 
   function sendData(e){
     e.preventDefault();
+
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
+
        const newSchedule ={
             name,
             date,
@@ -32,8 +90,8 @@ export default function AddSchedule(){
        axios.post("http://localhost:5000/schedule/add",newSchedule).then(()=> {
         alert("Schedule added")
        }).catch((err)=>{
-        alert(err)
-       })
+        alert(err);
+       });
 
   }
 
@@ -55,6 +113,7 @@ export default function AddSchedule(){
                 setName(e.target.value);
               }}
             />
+            {errors.name && <p className="text-red-500">{errors.name}</p>}
           </div>
 
           <div className="form-group">
@@ -70,6 +129,7 @@ export default function AddSchedule(){
                 setDate(e.target.value);
               }}
             />
+             {errors.date && <p className="text-red-500">{errors.date}</p>}
           </div>
 
           <div className="form-group">
@@ -85,6 +145,7 @@ export default function AddSchedule(){
                 setTime(e.target.value);
               }}
             />
+             {errors.Time && <p className="text-red-500">{errors.Time}</p>}
           </div>
 
           <div className="form-group">
@@ -100,6 +161,7 @@ export default function AddSchedule(){
                 setGarbagetype(e.target.value);
               }}
             />
+            {errors.GarbageType && <p className="text-red-500">{errors.GarbageType}</p>}
           </div>
 
           <div className="form-group">
@@ -115,6 +177,7 @@ export default function AddSchedule(){
                 setcollectionZone(e.target.value);
               }}
             />
+            {errors.collectionZone && <p className="text-red-500">{errors.collectionZone}</p>}
           </div>
 
           <div className="form-group">
@@ -130,6 +193,7 @@ export default function AddSchedule(){
                 setVehicle(e.target.value);
               }}
             />
+             {errors.AssignedVehicle && <p className="text-red-500">{errors.AssignedVehicle}</p>}
           </div>
 
           <div className="form-group">
@@ -145,6 +209,7 @@ export default function AddSchedule(){
                 setFrequancy(e.target.value);
               }}
             />
+             {errors.frequancy && <p className="text-red-500">{errors.frequancy}</p>}
           </div>
 
           <button
