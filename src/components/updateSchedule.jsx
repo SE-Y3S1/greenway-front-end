@@ -15,12 +15,22 @@ export default function UpdateSchedule() {
   });
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Fetch the schedule data by ID
-    axios.get(`http://localhost:5000/schedule/${id}`)
-      .then((res) => setSchedule(res.data))
-      .catch((err) => alert(err.message));
-  }, [id]);
+
+useEffect(() => {
+  // Fetch the schedule data by ID
+  const fetchSchedule = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/schedule/${id}`);
+      // Assuming response.data has the correct structure
+      setSchedule(response.data); 
+    } catch (error) {
+      console.error("Error fetching schedule:", error);
+      alert("Could not fetch schedule data.");
+    }
+  };
+
+  fetchSchedule();
+}, [id]);
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -53,7 +63,7 @@ export default function UpdateSchedule() {
             name="name"
             value={schedule.name}
             onChange={handleChange}
-            className="w-full p-3 border rounded-md"
+            className="w-full text-black p-3 border rounded-md"
           />
         </div>
         <div className="form-group">
@@ -63,7 +73,7 @@ export default function UpdateSchedule() {
             name="date"
             value={schedule.date}
             onChange={handleChange}
-            className="w-full p-3 border rounded-md"
+            className="w-full text-black p-3 border rounded-md"
           />
         </div>
         <div className="form-group">
@@ -73,7 +83,7 @@ export default function UpdateSchedule() {
             name="Time"
             value={schedule.Time}
             onChange={handleChange}
-            className="w-full p-3 border rounded-md"
+            className="w-full text-black  p-3 border rounded-md"
           />
         </div>
         <div className="form-group">
@@ -83,7 +93,7 @@ export default function UpdateSchedule() {
             name="GarbageType"
             value={schedule.GarbageType}
             onChange={handleChange}
-            className="w-full p-3 border rounded-md"
+            className="w-full text-black p-3 border rounded-md"
           />
         </div>
         <div className="form-group">
@@ -93,7 +103,7 @@ export default function UpdateSchedule() {
             name="collectionZone"
             value={schedule.collectionZone}
             onChange={handleChange}
-            className="w-full p-3 border rounded-md"
+            className="w-full text-black p-3 border rounded-md"
           />
         </div>
         <div className="form-group">
@@ -103,7 +113,7 @@ export default function UpdateSchedule() {
             name="AssignedVehicle"
             value={schedule.AssignedVehicle}
             onChange={handleChange}
-            className="w-full p-3 border rounded-md"
+            className="w-full text-black p-3 border rounded-md"
           />
         </div>
         <div className="form-group">
@@ -113,7 +123,7 @@ export default function UpdateSchedule() {
             name="frequancy"
             value={schedule.frequancy}
             onChange={handleChange}
-            className="w-full p-3 border rounded-md"
+            className="w-full text-black p-3 border rounded-md"
           />
         </div>
         <button

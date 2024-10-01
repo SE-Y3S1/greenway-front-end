@@ -35,11 +35,11 @@ const handleDelete = (id) => {
         });
     }
   };
-
 // Update button handler
 const handleUpdate = (id) => {
-    navigate(`/update/${id}`); // Redirect to the update page with the schedule ID
-  };
+  navigate(`/update/${id}`); // Redirect to the update page with the schedule ID
+};
+
 
 
 return(
@@ -82,7 +82,7 @@ return(
               <div className="mt-4 flex justify-between">
                 <button
                   onClick={() => handleUpdate(schedule._id)}
-                  className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded"
+                  className="bg-green-500 hover:bg-green-600 text-black font-semibold py-2 px-4 rounded"
                 >
                   Update
                 </button>
