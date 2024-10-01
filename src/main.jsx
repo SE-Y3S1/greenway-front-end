@@ -39,7 +39,6 @@ const router = createBrowserRouter([
         path: "/current",
         element: <CurrentSchedules />,
       },
-      
       {
         path: "/addSchedule",
         element: <AddSchedule />,
