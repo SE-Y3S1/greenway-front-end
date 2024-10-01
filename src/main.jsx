@@ -15,6 +15,7 @@ import AllSchedules from "./components/AllSchedules";
 import UpdateSchedule from "./components/updateSchedule";
 import PredictionPage from "./pages/predictive-model/prediction.page"; 
 
+
 const router = createBrowserRouter([
   {
     element: <RootLayout />,
@@ -56,6 +57,7 @@ const router = createBrowserRouter([
         path: "/waste-prediction",
         element: <PredictionPage />,
       },
+      
     ],
   },
 ]);
