@@ -3,7 +3,7 @@ import CurrentSchedules from "@/components/CurrentSchedules";
 
 function HomePage() {
   return (
-    <main className="container px=4">
+    <main>
       <div>
         <Hero/>
         <CurrentSchedules />
