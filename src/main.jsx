@@ -6,7 +6,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/home/home.page";
 import SignInPage from "./pages/sign-in.page";
 import SignUpPage from "./pages/sign-up.page";
-import RootLayout from "./layouts/root.layout"; 
+import RootLayout from "./layouts/root.layout";
+import PredictionPage from "./pages/predictive-model/prediction.page"; 
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <SignUpPage />,
+      },
+      {
+        path: "/waste-prediction",
+        element: <PredictionPage />,
       },
     ],
   },
