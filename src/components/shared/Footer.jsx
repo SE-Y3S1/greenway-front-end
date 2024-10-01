@@ -2,10 +2,10 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <div className="text-white">
+    <div className="text-underlay-1">
       <footer className="flex justify-between items-center h-20 px-8">
         <div className="text-left">
-          <div className="font-bold">GreenWay</div>
+          <div className="text-underlay-1 font-bold">GreenWay</div>
           <p className="text-xs">Created By: © 2024 Group SE-S1-WD-19</p>
         </div>
 
