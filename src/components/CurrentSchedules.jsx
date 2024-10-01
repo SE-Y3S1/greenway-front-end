@@ -7,7 +7,7 @@ const [schedules, setSchedules] = useState([]);
 
     useEffect(()=>{
              function getSchedules(){
-                axios.get("http://localhost:8070/schedule/").then((res) =>{
+                axios.get("http://localhost:5000/schedule/").then((res) =>{
                     console.log(res.data);
                     setSchedules(res.data)
                 }).catch((err)=>{

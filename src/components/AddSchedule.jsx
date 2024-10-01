@@ -29,7 +29,7 @@ export default function AddSchedule(){
 
        }
 
-       axios.post("http://localhost:8070/schedule/add",newSchedule).then(()=> {
+       axios.post("http://localhost:5000/schedule/add",newSchedule).then(()=> {
         alert("Schedule added")
        }).catch((err)=>{
         alert(err)

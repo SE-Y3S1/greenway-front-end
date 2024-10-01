@@ -10,7 +10,7 @@ export default function AllSchedules(){
 
     useEffect(()=>{
              function getSchedules(){
-                axios.get("http://localhost:8070/schedule/").then((res) =>{
+                axios.get("http://localhost:5000/schedule/").then((res) =>{
                     console.log(res.data);
                     setSchedules(res.data)
                 }).catch((err)=>{
@@ -24,7 +24,7 @@ getSchedules();
 const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this schedule?")) {
       axios
-        .delete(`http://localhost:8070/schedule/delete/${id}`)
+        .delete(`http://localhost:5000/schedule/delete/${id}`)
         .then(() => {
           alert("Schedule deleted successfully");
           // Remove the deleted schedule from state

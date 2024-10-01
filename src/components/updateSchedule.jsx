@@ -17,7 +17,7 @@ export default function UpdateSchedule() {
 
   useEffect(() => {
     // Fetch the schedule data by ID
-    axios.get(`http://localhost:8070/schedule/${id}`)
+    axios.get(`http://localhost:5000/schedule/${id}`)
       .then((res) => setSchedule(res.data))
       .catch((err) => alert(err.message));
   }, [id]);
@@ -34,7 +34,7 @@ export default function UpdateSchedule() {
   // Handle form submission for update
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:8070/schedule/update/${id}`, schedule)
+    axios.put(`http://localhost:5000/schedule/update/${id}`, schedule)
       .then(() => {
         alert("Schedule updated successfully");
         navigate("/current"); // Navigate back to the schedule listing page
